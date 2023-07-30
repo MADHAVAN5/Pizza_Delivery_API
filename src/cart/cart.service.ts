@@ -42,6 +42,15 @@ export class CartService {
         }
     }
 
+    async deleteCartItem(id: number, email: string) {
+        try {
+            var CartItems = await this.db.collection('users').updateOne({ email: email, 'cart.itemId': id }, { $pull: { 'cart': { itemId: id } } });
+            return CartItems;
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
     isItemInCart(item1, item2): number {
         for (let i = 0; i < item1.length; i++) {
             if (item1[i].itemId == item2.itemId) {
