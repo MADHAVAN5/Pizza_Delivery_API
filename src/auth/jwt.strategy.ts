@@ -8,10 +8,10 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
   constructor(
     @Inject('DATABASE_CONNECTION')
     private db: Db,
-  ) {
+  ) { 
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-      secretOrKey: 'asnbdajshegyawdjsnbcjahs',
+      secretOrKey: `${process.env.SECRET_KEY}`,
     });
   }
 

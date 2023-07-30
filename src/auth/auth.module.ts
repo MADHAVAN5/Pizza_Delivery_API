@@ -5,16 +5,18 @@ import { DatabaseModule } from 'src/database.model';
 import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
 import { JwtStrategy } from './jwt.strategy';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
+    ConfigModule.forRoot({ envFilePath: `${process.env.NODE_ENV}.env` }),
     PassportModule.register({ defaultStrategy: 'jwt' }), 
     JwtModule.registerAsync({
       useFactory: () => {
         return {
-          secret: 'asnbdajshegyawdjsnbcjahs',
+          secret: `${process.env.SECRET_KEY}`,
           signOptions: {
-            expiresIn: '1h',
+            expiresIn: `${process.env.SECRET_EXPIRES}`,
           },
         };
       },
