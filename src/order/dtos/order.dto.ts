@@ -1,6 +1,6 @@
-import { IsEmail, IsNotEmpty } from '@nestjs/class-validator';
+import { IsNotEmpty } from '@nestjs/class-validator';
 
-export class CreateCartDto {
+export class CreateOrderDto {
   @IsNotEmpty()
   readonly itemId: string;
   
