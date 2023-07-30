@@ -8,7 +8,7 @@ export class ItemsController {
     
     @Get()
     @UseGuards(AuthGuard())
-    LogIn() {
+    getAll() {
         return this.itemService.getAll();
     }
 
